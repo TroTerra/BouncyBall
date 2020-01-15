@@ -11,12 +11,12 @@ public class Physics {
     private static Boolean cealingHit(double cealing, double position, double radius){
         return (position + radius >= cealing);
     }
-    public static void hitCheck(Ball ball,double width, double height){
+    public static void hitCheck(Ball ball, double width, double height){
         if(rightWallHit(width,ball.getXPosition(), ball.getRadius())||leftWallHit(0.0, ball.getXPosition(), ball.getRadius())){
-            ball.invertXVektor();
+            ball.invertXVector();
         }
         if(floorHit(0.0, ball.getYPosition(), ball.getRadius())||cealingHit(height, ball.getYPosition(), ball.getRadius())){
-            ball.invertYVektor();
+            ball.invertYVector();
         }
     }
 }

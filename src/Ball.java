@@ -1,58 +1,32 @@
 import java.awt.*;
 import java.lang.Math;
-public class Ball {
-    private double xVector;
-    private double yVector;
-    private double xPosition;
-    private double yPosition;
-    private double radius = 100;
+
+public class Ball extends BallLogic{
     private Color color;
 
-    public void changePosition(){
-        this.xPosition += this.xVector;
-        this.yPosition += this.yVector;
+    public Ball(Vector2D spawnPoint){
+        super(spawnPoint);
+        randomColor();
     }
+
     public void drawBall(){
         StdDraw.setPenColor(this.color);
-        StdDraw.filledCircle(this.xPosition, this.yPosition, this.radius);
+        StdDraw.filledCircle(this.position.x, this.position.y, this.radius);
     }
-    public double getXPosition(){
-        return  xPosition;
-    }
-    public double getYPosition(){
-        return yPosition;
-    }
-    public double getRadius(){
-        return  radius;
-    }
-    public void invertXVektor(){
-        this.xVector = -this.xVector;
+    public void invertXVector(){
+        this.diriction = this.diriction.vectorMultiplication(new Vector2D(-1,1));
         this.randomColor();
     }
-    public  void invertYVektor(){
-        this.yVector = -this.yVector;
+    public  void invertYVector(){
+        this.diriction = this.diriction.vectorMultiplication(new Vector2D(1,-1));
         this.randomColor();
     }
-    private double makeVektor(){
-        return(Math.random() - 0.5)*10;
-    }
+
     private void randomColor(){
-        double num = Math.random();
-        if (num > 0.5){
-            this.color = Color.red;
+        int[] RGB = new int[3];
+        for(int i = 0; i < 3; i++) {
+            RGB[i] = (int) (Math.random() * 255);
         }
-        else {
-            this.color = Color.yellow;
-        }
-    }
-    public  void makeSpawnPoint(Background background){
-        this.xPosition = background.getScale()/2;
-        this.yPosition = background.getScale()/2;
-    }
-    public Ball(Background background){
-        randomColor();
-        makeSpawnPoint(background);
-        this.yVector = makeVektor();
-        this.xVector = makeVektor();
+        this.color = new Color(RGB[0], RGB[1], RGB[2]);
     }
 }
