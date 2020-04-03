@@ -1,14 +1,27 @@
 public class BallLogic {
-    private double wheightConstant = 1;
-    private double wheight;
+    private double weightConstant = 1;
+    private double weight;
     protected double radius;
+    protected double restitution = 1;
     Vector2D position;
     Vector2D diriction;
-    public  BallLogic(Vector2D spawnPoint){
-        this.radius = 100;
+    public  BallLogic(Vector2D spawnPoint, double radius){
+        this.radius = radius;
         this.position = spawnPoint;
         this.diriction = makeVector();
-        this.wheight = calcWheight();
+        this.weight = calcWeight();
+    }
+
+    public void setDiriction(Vector2D newDiriction){
+        this.diriction = newDiriction;
+    }
+
+    public  double getWeight(){
+        return  weight;
+    }
+
+    public double getRestitution(){
+        return restitution;
     }
 
     public double getXPosition(){
@@ -28,11 +41,13 @@ public class BallLogic {
     }
 
     private Vector2D makeVector(){
-        return new Vector2D((Math.random() - 0.5)*20, (Math.random() - 0.5)*20);
+        int speed = 20;
+        return new Vector2D((Math.random() - 0.5)*speed, (Math.random() - 0.5)*speed);
     }
 
-    private double calcWheight(){
-        return radius*wheightConstant;
+    private double calcWeight(){
+        return radius*weightConstant;
     }
+
 }
 

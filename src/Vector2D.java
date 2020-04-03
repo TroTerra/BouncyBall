@@ -15,4 +15,16 @@ public class Vector2D {
     public Vector2D vectorMultiplication(Vector2D toBeMultipplied){
         return new Vector2D(this.x * toBeMultipplied.x, this.y * toBeMultipplied.y);
     }
+
+    public Vector2D vectorMultiplication(double a, double b){
+        return new Vector2D(this.x * a, this.y * b);
+    }
+
+    public double length(){
+        return Math.sqrt((x*x+y*y));
+    }
+
+    public double product(Vector2D a){
+        return this.x * a.x + this.y * a.y;
+    }
 }

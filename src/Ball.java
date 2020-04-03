@@ -4,8 +4,8 @@ import java.lang.Math;
 public class Ball extends BallLogic{
     private Color color;
 
-    public Ball(Vector2D spawnPoint){
-        super(spawnPoint);
+    public Ball(Vector2D spawnPoint, double radius){
+        super(spawnPoint, radius);
         randomColor();
     }
 
